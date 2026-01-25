@@ -22,7 +22,7 @@ import fanl_yp
 fanfile = open("path/to/fanfile", "br")
 
 #Load the game
-game = game = fanl_yp.decode.decode(zlib.decompress(fanfile.read()))
+game = fanl_yp.decode.decode(zlib.decompress(fanfile.read()))
 
 title = game.title
 description = game.description
