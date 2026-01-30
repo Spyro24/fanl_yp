@@ -46,3 +46,4 @@ fanfile.close()
 - [ ] Finish this README
 - [ ] Add all 33 colors as a RGB value to the color palette (incl there name and ID)
 - [ ] Add Example scripts
+- [ ] add characte representation for characters `0x15` to `0x1F`
