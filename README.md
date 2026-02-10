@@ -40,6 +40,32 @@ print(f"Index Offset: {str(indexOffset)}")
 #Cleanup
 fanfile.close()
 ```
+### Simple fanfile creation script (Example how to write a fanfile)
+```python3
+import zlib
+import fanl_yp
+
+#Open the Fanfile
+fanfile = open("path/to/fanfile", "br")
+
+#Load the game
+game = fanl_yp.decode.decode(zlib.decompress(fanfile.read()))
+
+game.title = ""
+game.description = ""
+game.author = ""
+
+#Print the infos
+print(f"Game Title: {title}")
+print(f"Game Description: {description}")
+print(f"Author: {author}")
+print(f"Object Count: {str(objectCount)}")
+print(f"Index Offset: {str(indexOffset)}")
+
+#Cleanup
+fanfile.close()
+```
+
 
 ## TODO
 
