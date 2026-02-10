@@ -51,9 +51,9 @@ fanfile = open("path/to/fanfile", "br")
 #Load the game
 game = fanl_yp.decode.decode(zlib.decompress(fanfile.read()))
 
-game.title = ""
-game.description = ""
-game.author = ""
+game.title = "A Game"
+game.description = "This Game was created with fabl_yp"
+game.author = "fanl_yp"
 
 #Print the infos
 print(f"Game Title: {title}")
