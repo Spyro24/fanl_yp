@@ -6,7 +6,7 @@ import hashlib
 voxelArrayLength = objectContainer().Faces().voxelArrayLength
 littleEndian = True
 
-def decode(buffer, headerOnly=False) -> fanl_yp.types.Game:
+def decode(buffer, headerOnly=False hashing=False) -> fanl_yp.types.Game:
     reader = BufferReader(buffer)
     game = Game()
 
@@ -99,6 +99,7 @@ def decode(buffer, headerOnly=False) -> fanl_yp.types.Game:
                     connection.offset['to']     = reader.readVec3Uint16();
     
                     objectContainer.connections.append(connection)
-            objectContainer.hash = hashlib.sha256(reader.chunck).hexdigest()
+            if hashing:
+                objectContainer.hash = hashlib.sha256(reader.chunck).hexdigest()
             game.objectContainers.append(objectContainer)
     return game
