@@ -4,9 +4,9 @@ import zlib
 
 class BufferReader:
     def __init__(self, buffer):
-        self.view = buffer
+        self.view = memoryview(buffer)
         self.offset = 0
-        self.chunck = b""
+        self.chunckStart = self.offset
 
     def readUint8(self):
         uint8 = self.view[self.offset]
@@ -52,8 +52,7 @@ class BufferReader:
     
     def readString(self):
         length = self.readUint8()
-        string = self.view[self.offset:self.offset + length].decode("UTF-8")
-        self.chunck += self.view[self.offset:self.offset + length]
+        string = bytes(self.view[self.offset:self.offset + length]).decode("UTF-8")
         self.offset += length
         return string
     
@@ -73,7 +72,10 @@ class BufferReader:
         return buffer
     
     def new_chunk(self):
-        self.chunck = b""
+        self.chunckStart = self.offset
+    
+    def getChunk(self):
+        return self.view[self.chunckStart:self.offset]
 
 class Buffer:
     def __init__(self, fileNameAndPath: str, mode):
