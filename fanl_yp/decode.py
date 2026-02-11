@@ -100,6 +100,6 @@ def decode(buffer, headerOnly=False hashing=False) -> fanl_yp.types.Game:
     
                     objectContainer.connections.append(connection)
             if hashing:
-                objectContainer.hash = hashlib.sha256(reader.chunck).hexdigest()
+                objectContainer.hash = hashlib.sha256(reader.getChunk()).hexdigest()
             game.objectContainers.append(objectContainer)
     return game
