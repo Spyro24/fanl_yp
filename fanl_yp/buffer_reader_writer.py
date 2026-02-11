@@ -10,7 +10,6 @@ class BufferReader:
 
     def readUint8(self):
         uint8 = self.view[self.offset]
-        self.chunck += self.view[self.offset].to_bytes(1)
         self.offset += 1
         return uint8
     
@@ -19,7 +18,6 @@ class BufferReader:
         if not littleEndian:
             endian = "big"
         uint16 = int.from_bytes(self.view[self.offset: self.offset + 2], endian)
-        self.chunck += self.view[self.offset: self.offset + 2]
         self.offset += 2;
         return uint16
     
@@ -28,7 +26,6 @@ class BufferReader:
         if not littleEndian:
             endian = "big"
         uint32 = int.from_bytes(self.view[self.offset: self.offset + 4], endian)
-        self.chunck += self.view[self.offset: self.offset + 4]
         self.offset += 4
         return uint32
     
@@ -37,7 +34,6 @@ class BufferReader:
         if not littleEndian:
             endian = ">"
         float32 = struct.unpack(endian +  "f", self.view[self.offset: self.offset + 4])
-        self.chunck += self.view[self.offset: self.offset + 4]
         self.offset += 4
         return float32[0]
     
@@ -46,7 +42,6 @@ class BufferReader:
         if not littleEndian:
             endian = "big"
         int32 = int.from_bytes(self.view[self.offset: self.offset + 4], endian, signed=True)
-        self.chunck += self.view[self.offset: self.offset + 4]
         self.offset += 4
         return int32
     
@@ -67,7 +62,6 @@ class BufferReader:
     
     def readBuffer(self, size=1):
         buffer = self.view[self.offset:self.offset + size]
-        self.chunck += self.view[self.offset:self.offset + size]
         self.offset += size
         return buffer
     
